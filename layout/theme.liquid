@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="stylesheet" href="https://use.typekit.net/lhn7swi.css">
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
@@ -218,7 +219,7 @@
         --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
       }
 
-      *,
+      /* *,
       *::before,
       *::after {
         box-sizing: inherit;
@@ -248,7 +249,7 @@
         body {
           font-size: 1.6rem;
         }
-      }
+      } */
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
