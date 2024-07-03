@@ -5,6 +5,7 @@
   --heading-size: 4rem;
   --accent-size: 3rem;
   --quote-size: 0.9rem;
+  --logo-size: 1.6rem;
 }
 
 @media screen and (width <= 1500px) {
@@ -12,6 +13,7 @@
     --heading-size: 3rem;
     --paragraph-size: 1.6rem;
     --quote-size: 0.8rem;
+    --logo-size: 1.4rem;
   }
 }
 
@@ -20,6 +22,7 @@
     --heading-size: 1.8rem;
     --paragraph-size: 0.9rem;
     --quote-size: 0.55rem;
+    --logo-size: 1rem;
   }
 }
 
