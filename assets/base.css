@@ -4,6 +4,23 @@
   --paragraph-size: 2rem;
   --heading-size: 4rem;
   --accent-size: 3rem;
+  --quote-size: 0.9rem;
+}
+
+@media screen and (width <= 1500px) {
+  :root {
+    --heading-size: 3rem;
+    --paragraph-size: 1.6rem;
+    --quote-size: 0.8rem;
+  }
+}
+
+@media screen and (width <= 950px){
+  :root {
+    --heading-size: 1.8rem;
+    --paragraph-size: 0.9rem;
+    --quote-size: 0.55rem;
+  }
 }
 
 @font-face {
