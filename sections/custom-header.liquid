@@ -1,0 +1,60 @@
+<div class="navigationContainer">
+  <button class="headerHamburger">
+    <span class="headerHamburgerBar"></span>
+    <span class="headerHamburgerBar"></span>
+    <span class="headerHamburgerBar"></span>
+  </button>
+
+  <div class="linksContainer">
+    {% for link in section.settings.navigation.links %}
+      <a class="mainLink" href="{{ link.url }}">
+        {{ link.title }}
+      </a>
+
+      {% if link.links != blank %}
+        <span class="navSubItemContainer">
+          {% for child in link.links %}
+            <a class="navSubItem" href="{{ child.url }}">
+              {{ child.title }}
+            </a>
+          {% endfor %}
+        </span>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="logoContainer">
+    <a href="/"><p class="logo">L A E L</p></a>
+  </div>
+  <div class="cartContainer">
+    <a>CART</a>
+  </div>
+</div>
+
+<div class="headerOverlay"></div>
+
+<script>
+  document.querySelector('.headerHamburger').addEventListener('click', () => {
+    document.querySelector('.newHeader').classList.toggle('nav-active');
+  });
+
+  document.querySelector('.headerOverlay').addEventListener('click', () => {
+    document.querySelector('.newHeader').classList.remove('nav-active');
+    console.log('hi');
+  });
+</script>
+
+{% schema %}
+{
+  "name": "NewHeader",
+  "tag": "header",
+  "class": "newHeader",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "navigation",
+      "label": "Navigation Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

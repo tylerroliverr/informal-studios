@@ -16,7 +16,7 @@ a {
 }
 
 .productPageDetailsContainer {
-  /* position: fixed; */
+  position: fixed;
   display: flex;
   flex-direction: column;
   gap: 35px;
