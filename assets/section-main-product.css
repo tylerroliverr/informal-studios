@@ -1,15 +1,36 @@
+a:visited {
+  all: unset;
+}
+
+a {
+  text-decoration: none;
+}
+
 .productPageGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  padding: 10px 50px;
 }
 
 .productPageDetailsContainer {
+  /* position: fixed; */
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 35px;
+  padding-left: 120px;
+  right: 0;
+  width: 50vw;
+}
+
+.productPageImagesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .titleContainer {
@@ -21,11 +42,22 @@
 .variantsContainer {
   display: flex;
   align-items: flex-end;
-  gap: 200px;
+  width: 100%;
+  gap: 72px;
 }
 
 .informationText {
   opacity: 0.5;
+}
+
+.productPriceDiv {
+  width: 20%;
+}
+
+.variantsDiv {
+  width: 80%;
+  display: flex;
+  gap: 15px;
 }
 
 .productPrice {
@@ -48,9 +80,22 @@
 }
 
 .informationTitle {
-  width: 15%;
+  width: 20%;
 }
 
 .informationText {
   width: 80%;
+}
+
+.variantImage {
+  width: 100%;
+  max-height: 80dvh;
+}
+
+.fitImage {
+  width: 100%;
+  max-height: 80dvh;
+  object-fit: cover;
+  object-position: center 70%;
+  display: block;
 }
