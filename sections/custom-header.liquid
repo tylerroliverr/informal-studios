@@ -5,21 +5,25 @@
     <span class="headerHamburgerBar"></span>
   </button>
 
-  <div class="linksContainer">
+  <div class="headerNav">
     {% for link in section.settings.navigation.links %}
-      <a class="mainLink" href="{{ link.url }}">
-        {{ link.title }}
-      </a>
+      <span class="headerNavItem">
+        <a class="headerNavAnchor" href="{{ link.url }}">
+          {{ link.title }}
+        </a>
 
-      {% if link.links != blank %}
-        <span class="navSubItemContainer">
-          {% for child in link.links %}
-            <a class="navSubItem" href="{{ child.url }}">
-              {{ child.title }}
-            </a>
-          {% endfor %}
-        </span>
-      {% endif %}
+        {% if link.links != blank %}
+          <span class="headerSub">
+            {% for child in link.links %}
+              <span class="headerSubItem">
+                <a class="headerSubAnchor" href="{{ child.url }}">
+                  {{ child.title }}
+                </a>
+              </span>
+            {% endfor %}
+          </span>
+        {% endif %}
+      </span>
     {% endfor %}
   </div>
   <div class="logoContainer">

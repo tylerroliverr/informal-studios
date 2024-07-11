@@ -11,22 +11,15 @@ a {
 .navigationContainer {
     height: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 0 30px;
 }
 
-.cartContainer {
-    margin-left: auto;
-}
-
-.linksContainer,
-.cartContainer {
-    opacity: 0.65;
-}
-
 .logoContainer {
-    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .logo {
@@ -83,14 +76,14 @@ a {
     }
 }
 
-.linksContainer {
+.headerNav {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
     overflow: auto;
     background-color: white;
-    width: 90%;
+    width: 100%;
     max-width: 300px;
     z-index: 10;
 
@@ -103,8 +96,7 @@ a {
     transition: 0.4s transform;
 
     @media (width >=768px) {
-        position: static;
-        margin-right: auto;
+        position: relative;
         display: flex;
         flex-direction: row;
         gap: 20px;
@@ -121,35 +113,49 @@ a {
     }
 }
 
-.navSubItemContainer {
+.headerNavItem {
+    display: flex;
+    flex-direction: column;
+
     @media (width >=768px) {
         position: relative;
     }
 }
 
-.navSubItem {
-    opacity: 0.8;
-    padding-left: 15px;
+.headerSub {
+    display: flex;
+    flex-direction: column;
 
+    /*header sub*/
     @media (width >=768px) {
         position: absolute;
         top: 100%;
-        transform: translateX(-50%);
         background-color: white;
-        border-radius: 10px;
-        outline: 1px solid black;
         padding-left: 0;
         opacity: 0;
-
+        padding: 10px 10px;
+        border-radius: 4px;
+        left: 0%;
         transition: var(--fadeOff);
+        width: 300px;
+        display: flex;
+        flex-direction: column;
     }
 
-    .mainLink:hover+& {
-        left: 50%;
-        opacity: 1;
-        transition: var(--fadeOn);
+    .headerNavAnchor:hover+&,
+    &:hover {
+        @media (width >=768px) {
+            opacity: 1;
+            transition: var(--fadeOn);
+        }
     }
 
+}
+
+.headerSubAnchor {
+    /*header sub anchor*/
+    opacity: 0.7;
+    padding-left: 12px;
 
     &+& {
         margin-top: 5px;
