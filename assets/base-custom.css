@@ -1,0 +1,38 @@
+:root {
+  --main-font: owners-wide, sans-serif;
+  --accent-font: "ITC-Century";
+  --paragraph-size: 2rem;
+  --heading-size: 4rem;
+  --accent-size: 3rem;
+  --quote-size: 0.9rem;
+  --logo-size: 1.6rem;
+}
+
+@media screen and (width <=1500px) {
+  :root {
+    --heading-size: 3rem;
+    --paragraph-size: 1.6rem;
+    --quote-size: 0.8rem;
+    --logo-size: 1.4rem;
+  }
+}
+
+@media screen and (width <=950px) {
+  :root {
+    --heading-size: 1.8rem;
+    --paragraph-size: 0.9rem;
+    --quote-size: 0.55rem;
+    --logo-size: 1rem;
+  }
+}
+
+@font-face {
+  font-family: "ITC-Century";
+  src: url(https://cdn.shopify.com/s/files/1/0889/4064/2580/files/ITC-Century.woff?v=1720412217);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}

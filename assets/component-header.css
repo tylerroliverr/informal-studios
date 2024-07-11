@@ -122,6 +122,10 @@ a {
     }
 }
 
+.headerNavAnchor {
+    opacity: 0.75;
+}
+
 .headerSub {
     display: flex;
     flex-direction: column;

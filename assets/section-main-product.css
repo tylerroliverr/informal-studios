@@ -19,9 +19,9 @@ a {
   position: fixed;
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 30px;
   padding-left: 120px;
-  right: 0;
+  right: 40px;
   width: 50vw;
 }
 
@@ -55,7 +55,6 @@ a {
 }
 
 .variantsDiv {
-  width: 80%;
   display: flex;
   gap: 15px;
 }
@@ -98,4 +97,46 @@ a {
   object-fit: cover;
   object-position: center 70%;
   display: block;
+}
+
+
+
+
+
+
+
+
+.variant-option {
+  margin-right: 15px;
+}
+
+.variant-option input[type="radio"] {
+  display: none;
+}
+
+.variant-button {
+  display: inline-block;
+  cursor: pointer;
+  color: #888;
+  /* Grey for inactive variants */
+  transition: all 0.3s ease;
+}
+
+.variant-option input[type="radio"]:checked+.variant-button {
+  color: #000;
+}
+
+.variant-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  pointer-events: none;
+}
+
+.variant-button:hover:not(.disabled) {
+  color: #000;
+}
+
+.variant-option input[type="radio"]:checked+.variant-button:hover {
+  color: #333;
 }
