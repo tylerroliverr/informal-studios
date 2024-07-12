@@ -1,13 +1,6 @@
 {{ 'component-footer.css' | asset_url | stylesheet_tag }}
 
 <div class="footerGrid">
-  <div class="aboutContainer">
-    <p class="accent">ABOUT THE BRAND</p>
-    <p class="text">
-      LAEL epitomises luxury and opulence with a relaxed yet vibrant approach. It strives to exude richness while
-      ensuring an appealing aesthetic in all its designs.
-    </p>
-  </div>
   <div class="emailContainer">
     {% form 'customer', class: 'newsletter-form' %}
       <input type="hidden" name="contact[tags]" value="newsletter">
@@ -70,7 +63,14 @@
       {%- endif -%}
     {% endform %}
   </div>
-  <div class=""></div>
-  <div class=""></div>
-  <div class=""></div>
+  <div class="space"></div>
+  <div class="space"></div>
+  <div class="space"></div>
+  <div class="aboutContainer">
+    <p class="accent">ABOUT THE BRAND</p>
+    <p class="text">
+      LAEL epitomises luxury and opulence with a relaxed yet vibrant approach. It strives to exude richness while
+      ensuring an appealing aesthetic in all its designs.
+    </p>
+  </div>
 </div>

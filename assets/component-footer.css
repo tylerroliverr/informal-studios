@@ -4,7 +4,7 @@
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    padding: 0 0 30px 30px;
+    padding: 30px 50px;
 }
 
 .accent {
@@ -14,6 +14,15 @@
 
 .text {
     opacity: 0.75;
+}
+
+div:empty {
+    display: block;
+}
+
+.space {
+    width: 20px;
+    height: 20px;
 }
 
 .emailContainer {}
