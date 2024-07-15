@@ -165,3 +165,33 @@ a {
         margin-top: 5px;
     }
 }
+
+.headerNavAnchor,
+.headerSubAnchor {
+    text-decoration: none;
+    position: relative;
+    transition: opacity 0.3s ease-out;
+}
+
+.headerNavAnchor::after,
+.headerSubAnchor::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease-out;
+    z-index: 10000;
+}
+
+.headerNavAnchor:hover,
+.headerSubAnchor:hover {
+    opacity: 1;
+}
+
+.headerNavAnchor:hover::after,
+.headerSubAnchor:hover::after {
+    width: 100%;
+}

@@ -67,12 +67,12 @@
             {%- for block in section.blocks -%}
               {% case block.type %}
                 {%- when 'heading' -%}
-                  <h2
+                  <h4
                     class="image-with-text__heading inline-richtext {{ block.settings.heading_size }}"
                     {{ block.shopify_attributes }}
                   >
                     {{ block.settings.heading }}
-                  </h2>
+                  </h4>
                 {%- when 'caption' -%}
                   <p
                     class="image-with-text__text image-with-text__text--caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }} {{ block.settings.text_style }}"
@@ -327,7 +327,6 @@
     {
       "type": "heading",
       "name": "t:sections.image-with-text.blocks.heading.name",
-      "limit": 1,
       "settings": [
         {
           "type": "inline_richtext",
