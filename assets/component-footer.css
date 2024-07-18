@@ -83,6 +83,22 @@ input {
     font-size: var(--quote-size);
 }
 
+@media (width <=1700px) {
+    .footerGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .space {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+    div:empty {
+        display: none;
+    }
+}
+
 @media screen and (width <=950px) {
     .newsletter-form {
         width: 85vw;
@@ -92,7 +108,7 @@ input {
         display: flex;
         flex-direction: column;
         padding: 20px;
-        gap: 20px;
+        gap: 30px;
     }
 
     .field__button,

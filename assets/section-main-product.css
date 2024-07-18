@@ -16,13 +16,14 @@ a {
 }
 
 .productPageDetailsContainer {
-  position: fixed;
+  position: sticky;
   display: flex;
   flex-direction: column;
   gap: 30px;
   padding-left: 120px;
   right: 40px;
   width: 50vw;
+  top: 15px;
 }
 
 .productPageImagesContainer {
@@ -99,13 +100,6 @@ a {
   display: block;
 }
 
-
-
-
-
-
-
-
 .variant-option {
   margin-right: 15px;
 }
@@ -139,4 +133,25 @@ a {
 
 .variant-option input[type="radio"]:checked+.variant-button:hover {
   color: #333;
+}
+
+@media (width <=1700px) {
+
+  body {
+    font-size: 1rem;
+  }
+
+  .productPageDetailsContainer {
+    gap: 15px;
+  }
+
+  .titleContainer {
+    font-size: 2rem;
+  }
+}
+
+@media (width <=768px) {
+  .productPageGrid {
+    padding: 0;
+  }
 }

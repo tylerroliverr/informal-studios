@@ -45,6 +45,10 @@
   box-sizing: border-box;
 }
 
+.content-for-layout {
+  padding: 0 10px;
+}
+
 .product-card-wrapper .card,
 .contains-card--product {
   --border-radius: var(--product-card-corner-radius);

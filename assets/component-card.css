@@ -572,3 +572,9 @@
     clip-path: polygon(var(--shape--blob-5));
   }
 }
+
+@media (width <=768px) {
+  .card__inner {
+    height: auto;
+  }
+}
