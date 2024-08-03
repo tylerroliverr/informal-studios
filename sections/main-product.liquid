@@ -217,13 +217,21 @@
 
                 <div class="informationList">
                   <div class="informationContainer">
-                    <div class="informationTitle">FIT & SIZE</div>
-                    <div class="informationText">REM IPSUM DOLOR SIT AMET, CONSECTETUER ADIPISCING</div>
+                    {% if product.metafields.custom.fit_size %}
+                      <div class="informationTitle">FIT & SIZE</div>
+                      <div class="informationText">
+                        <p>{{ product.metafields.custom.fit_size | metafield_tag }}</p>
+                      </div>
+                    {% endif %}
                   </div>
-                  <div class="informationContainer">
-                    <div class="informationTitle">COMPOSITION</div>
-                    <div class="informationText">100% COTTON</div>
-                  </div>
+                  {% if product.metafields.custom.composition %}
+                    <div class="informationContainer">
+                      <div class="informationTitle">COMPOSITION</div>
+                      <div class="informationText">
+                        <p>{{ product.metafields.custom.composition | metafield_tag }}</p>
+                      </div>
+                    </div>
+                  {% endif %}
                   <div class="informationContainer">
                     <div class="informationTitle">MADE IN</div>
                     <div class="informationText">UNITED KINGDOM, DESIGNED IN AUSTRALIA</div>

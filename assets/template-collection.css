@@ -15,6 +15,7 @@
   position: absolute;
   z-index: 1;
   width: 1.8rem;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 749px) {
@@ -63,7 +64,7 @@
   }
 }
 
-.collection__description > * {
+.collection__description>* {
   margin: 0;
 }
 

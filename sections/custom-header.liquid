@@ -8,6 +8,9 @@
   </button>
 
   <div class="headerNav">
+    <div class="logoContainer">
+      <a href="/"><p class="logo">L A E L</p></a>
+    </div>
     {% for link in section.settings.navigation.links %}
       <span class="headerNavItem">
         <a class="headerNavAnchor" href="{{ link.url }}">
@@ -28,6 +31,7 @@
       </span>
     {% endfor %}
   </div>
+  
   <div class="logoContainer">
     <a href="/"><p class="logo">L A E L</p></a>
   </div>
