@@ -199,13 +199,17 @@ a {
 }
 
 @media screen and (width >=768px) {
-  .mobile-gallery {
+  .product-media-gallery {
     display: none;
   }
 }
 
 @media screen and (width <=767px) {
   .desktop-gallery {
+    display: none;
+  }
+
+  .variantImage {
     display: none;
   }
 
