@@ -34,11 +34,6 @@
   }
 }
 
-@font-face {
-  font-family: "ITC-Century";
-  src: url(https://cdn.shopify.com/s/files/1/0889/4064/2580/files/ITC-Century.woff?v=1720412217);
-}
-
 * {
   padding: 0;
   margin: 0;
