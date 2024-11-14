@@ -1,0 +1,24 @@
+{{ 'collection-custom-sections.css' | asset_url | stylesheet_tag }}
+{{ 'projects-interviews-writings.css' | asset_url | stylesheet_tag }}
+
+<div class="page-container">
+  <div class="index-container">
+    <p>Index</p>
+    {% for indexed_product in collections.interviews.products %}
+      <div class="product-title-div">
+        <a href="{{ indexed_product.url }}" target="_self">
+          <p class="product-title {% if template == 'product.interviews' and product.handle == indexed_product.handle %}current-product{% endif %}">
+            {{ indexed_product.title }}
+          </p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="container">
+    <div class="title-container">
+      <p class="current-product">{{ article.title }}</p>
+      <p class="sub-heading">{{ article.excerpt }}</p>
+    </div>
+  </div>
+</div>

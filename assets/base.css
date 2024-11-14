@@ -7,8 +7,9 @@
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
 
-  --main-font: owners-wide, sans-serif;
-  --accent-font: "ITC-Century";
+  --medium-font: "PPMon-Medium";
+  --regular-font: "PPMon-Regular";
+  --icon-font: "Yarndings 20";
   --paragraph-size: 2rem;
   --heading-size: 4rem;
   --accent-size: 3rem;
@@ -32,6 +33,16 @@
     --quote-size: 0.55rem;
     --logo-size: 1rem;
   }
+}
+
+@font-face {
+  font-family: "PPMon-Medium";
+  src: url(https://cdn.shopify.com/s/files/1/0693/3122/2685/files/PPNeueMontreal-Medium.woff?v=1731373533);
+}
+
+@font-face {
+  font-family: "PPMon-Regular";
+  src: url(https://cdn.shopify.com/s/files/1/0693/3122/2685/files/PPNeueMontreal-Regular.woff?v=1731373533);
 }
 
 * {

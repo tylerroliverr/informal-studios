@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "main": {
+      "type": "about",
+      "blocks": {
+        "about_DL9ir9": {
+          "type": "about",
+          "settings": {
+            "body": "<p>Zara Kamran Khan is an architect, writer, and researcher with a passion y for making things. Trained in architecture and fuelled by curiosity a, she explores ideas across disciplines, from writing and research to designing jewellery.</p>"
+          }
+        },
+        "about_QRrkDU": {
+          "type": "about",
+          "settings": {
+            "body": "<p>Zara’s work brings together a love for craft and storytelling, creating pieces H that reflect both skill and imagination.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "about_DL9ir9",
+        "about_QRrkDU"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

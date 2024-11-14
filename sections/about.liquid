@@ -1,0 +1,57 @@
+{{ 'about.css' | asset_url | stylesheet_tag }}
+
+<div class="fade-bg"></div>
+
+<div class="about-page">
+  <div class="about-photo-container">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0693/3122/2685/files/About_Photo.jpg?v=1731547179"
+      width="auto"
+      height="auto"
+      class="about-photo"
+    >
+  </div>
+
+  <div class="about-text-container">
+    <div class="about-text">
+      <p>
+        Zara Kamran Khan is an architect, writer, and researcher with a passion <span class="icon">y</span> for making
+        things. Trained in architecture and fuelled by curiosity <span class="icon">a</span>, she explores ideas across
+        disciplines, from writing and research to designing jewellery.
+      </p>
+      <br>
+      <p>
+        Zara’s work brings together a love for craft and storytelling, creating pieces <span class="icon">H</span> that
+        reflect both skill and imagination.
+      </p>
+    </div>
+    <div class="social-links-container">
+      <div class="social-links-bubble">
+        <a><p>Instagram</p></a>
+      </div>
+      <div class="social-links-bubble">
+        <a><p>Facebook</p></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "about",
+      "name": "About",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "About Body"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

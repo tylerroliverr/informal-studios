@@ -1,0 +1,27 @@
+.shop-container {
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 15px 0 20px 110px;
+}
+
+.products-container {
+  width: fit-content;
+  font-size: 10px;
+}
+
+.index-container {
+  width: fit-content;
+  font-size: 15px;
+  padding-top: 20px;
+}
+
+.product-title-div {
+  padding-left: 20px;
+  padding-top: 5px;
+}
+
+.current-product {
+  color: blue;
+}

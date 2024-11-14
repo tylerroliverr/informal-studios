@@ -9,22 +9,19 @@ a {
 }
 
 .navigationContainer {
-  height: 100px;
+  /* height: 100px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
+  padding: 10px 80px 0 0;
+  height: 60px;
 }
 
 .logoContainer {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.logo {
-  font-weight: 700;
-  font-size: 2rem;
+  left: 10px;
+  top: 0;
+  z-index: 2;
 }
 
 div:empty {
@@ -94,7 +91,6 @@ div:empty {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 10px 0 0 10px;
 
   transform: translateX(-100%);
   transition: 0.4s transform;
@@ -103,13 +99,16 @@ div:empty {
     position: relative;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 50px;
     width: auto;
     max-width: none;
     height: auto;
     overflow: initial;
     background: transparent;
     transform: none;
+    margin-left: auto;
+    margin-bottom: auto;
+    margin-top: 10px;
   }
 
   .nav-active & {
@@ -127,7 +126,8 @@ div:empty {
 }
 
 .headerNavAnchor {
-  opacity: 0.75;
+  opacity: 1;
+  font-size: 14px;
 }
 
 .headerSub {
@@ -141,7 +141,6 @@ div:empty {
     background-color: white;
     padding-left: 0;
     opacity: 0;
-    padding: 10px 10px;
     border-radius: 4px;
     left: 0%;
     transition: var(--fadeOff);
@@ -162,7 +161,7 @@ div:empty {
 
 .headerSubAnchor {
   /*header sub anchor*/
-  opacity: 0.7;
+  opacity: 1;
   padding-left: 12px;
 
   &+& {
