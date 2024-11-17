@@ -83,10 +83,10 @@
         "vendor",
         "title",
         "caption",
-        "price",
         "variant_picker",
         "quantity_selector",
         "description",
+        "price",
         "buy_buttons",
       ],
       "settings": {

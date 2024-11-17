@@ -6,7 +6,7 @@
   data-update-url="true"
   data-url="{{ product.url }}"
 >
-  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'custom-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
@@ -72,17 +72,28 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-  <div>
-    <div class="productPageGrid">
-      <div class="productPageImagesContainer">
-        {% render 'product-media-gallery', variant_images: variant_images %}
-      </div>
+  <div class="shop-page-container">
+    <div class="index-container">
+      <p>Shop</p>
+      {% for indexed_product in collections.shop.products %}
+        <div class="product-title-div">
+          <a href="{{ indexed_product.url }}" target="_self">
+            <p class="product-title {% if template == 'product' and product.handle == indexed_product.handle %}current-product{% endif %}">
+              {{ indexed_product.title }}
+            </p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
 
+    {% render 'product-media-gallery', variant_images: variant_images %}
+
+    <div class="">
       <section
         id="ProductInfo-{{ section.id }}"
         class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
       >
-        <div class="productPageDetailsContainer">
+        <div class="product-details-container">
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
           {%- for block in section.blocks -%}
@@ -90,66 +101,10 @@
               {%- when '@app' -%}
                 {% render block %}
               {%- when 'title' -%}
-                <div class="titleContainer" {{ block.shopify_attributes }}>
-                  <p>
+                <div class="title-container" {{ block.shopify_attributes }}>
+                  <p class="current-product">
                     {{ product.title | escape }}
                   </p>
-                </div>
-
-              {%- when 'price' -%}
-                <div class="variantsContainer">
-                  <div class="productPriceDiv">
-                    <p class="productPrice">{{ product.price | money_without_trailing_zeros }}</p>
-                  </div>
-                  <div class="variantsDiv">
-                    {%- unless product.has_only_default_variant -%}
-                      <variant-selects
-                        id="variant-selects-{{ section.id }}"
-                        data-section="{{ section.id }}"
-                        {{ block.shopify_attributes }}
-                        class="variantsDiv"
-                      >
-                        {%- for option in product.options_with_values -%}
-                          {% render 'product-variant-options',
-                            product: product,
-                            option: option,
-                            block: block,
-                            picker_type: 'button'
-                          %}
-                        {%- endfor -%}
-
-                        <script type="application/json" data-selected-variant>
-                          {{ product.selected_or_first_available_variant | json }}
-                        </script>
-                      </variant-selects>
-                    {%- endunless -%}
-                  </div>
-                </div>
-                {%- if product.quantity_price_breaks_configured? -%}
-                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
-                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
-                  </div>
-                {%- endif -%}
-                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                  <div class="product__tax caption rte">
-                    {%- if cart.duties_included and cart.taxes_included -%}
-                      {{ 'products.product.duties_and_taxes_included' | t }}
-                    {%- elsif cart.taxes_included -%}
-                      {{ 'products.product.taxes_included' | t }}
-                    {%- elsif cart.duties_included -%}
-                      {{ 'products.product.duties_included' | t }}
-                    {%- endif -%}
-                    {%- if shop.shipping_policy.body != blank -%}
-                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                    {%- endif -%}
-                  </div>
-                {%- endif -%}
-                <div {{ block.shopify_attributes }}>
-                  {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                  {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    {{ form | payment_terms }}
-                  {%- endform -%}
                 </div>
 
               {%- when 'inventory' -%}
@@ -210,39 +165,41 @@
 
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
-                  <div class="descriptionContainer rte quick-add-hidden" {{ block.shopify_attributes }}>
+                  <div class="description-container rte quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
                   </div>
                 {%- endif -%}
 
-                <div class="informationList">
-                  <div class="informationContainer">
-                    {% if product.metafields.custom.fit_size %}
-                      <div class="informationTitle">FIT & SIZE</div>
-                      <div class="informationText">
-                        <p>{{ product.metafields.custom.fit_size | metafield_tag }}</p>
+                {% comment %}
+                  <div class="informationList">
+                    <div class="informationContainer">
+                      {% if product.metafields.custom.fit_size %}
+                        <div class="informationTitle">FIT & SIZE</div>
+                        <div class="informationText">
+                          <p>{{ product.metafields.custom.fit_size | metafield_tag }}</p>
+                        </div>
+                      {% endif %}
+                    </div>
+                    {% if product.metafields.custom.composition %}
+                      <div class="informationContainer">
+                        <div class="informationTitle">COMPOSITION</div>
+                        <div class="informationText">
+                          <p>{{ product.metafields.custom.composition | metafield_tag }}</p>
+                        </div>
                       </div>
                     {% endif %}
-                  </div>
-                  {% if product.metafields.custom.composition %}
                     <div class="informationContainer">
-                      <div class="informationTitle">COMPOSITION</div>
+                      <div class="informationTitle">MADE IN</div>
+                      <div class="informationText">UNITED KINGDOM, DESIGNED IN AUSTRALIA</div>
+                    </div>
+                    <div class="informationContainer">
+                      <div class="informationTitle">SHIPPING</div>
                       <div class="informationText">
-                        <p>{{ product.metafields.custom.composition | metafield_tag }}</p>
+                        SHIPPING WORLDWIDE, SPEND OVER CERTAIN AMOUTN AND GET FREE SHIPPING AUSTRALIA WIDE
                       </div>
                     </div>
-                  {% endif %}
-                  <div class="informationContainer">
-                    <div class="informationTitle">MADE IN</div>
-                    <div class="informationText">UNITED KINGDOM, DESIGNED IN AUSTRALIA</div>
                   </div>
-                  <div class="informationContainer">
-                    <div class="informationTitle">SHIPPING</div>
-                    <div class="informationText">
-                      SHIPPING WORLDWIDE, SPEND OVER CERTAIN AMOUTN AND GET FREE SHIPPING AUSTRALIA WIDE
-                    </div>
-                  </div>
-                </div>
+                {% endcomment %}
 
               {%- when 'sku' -%}
                 <p
@@ -513,6 +470,62 @@
                   {%- when 'variant_picker' -%}
                   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
                 {% endcomment %}
+
+              {%- when 'price' -%}
+                <div class="variants-container">
+                  <div class="product-price-div">
+                    <p class="product-price">{{ product.price | money_without_trailing_zeros }}</p>
+                  </div>
+                  <div class="variants-div">
+                    {%- unless product.has_only_default_variant -%}
+                      <variant-selects
+                        id="variant-selects-{{ section.id }}"
+                        data-section="{{ section.id }}"
+                        {{ block.shopify_attributes }}
+                        class="variantsDiv"
+                      >
+                        {%- for option in product.options_with_values -%}
+                          {% render 'product-variant-options',
+                            product: product,
+                            option: option,
+                            block: block,
+                            picker_type: 'button'
+                          %}
+                        {%- endfor -%}
+
+                        <script type="application/json" data-selected-variant>
+                          {{ product.selected_or_first_available_variant | json }}
+                        </script>
+                      </variant-selects>
+                    {%- endunless -%}
+                  </div>
+                </div>
+                {%- if product.quantity_price_breaks_configured? -%}
+                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+                    <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+                  </div>
+                {%- endif -%}
+                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
+                  <div class="product__tax caption rte">
+                    {%- if cart.duties_included and cart.taxes_included -%}
+                      {{ 'products.product.duties_and_taxes_included' | t }}
+                    {%- elsif cart.taxes_included -%}
+                      {{ 'products.product.taxes_included' | t }}
+                    {%- elsif cart.duties_included -%}
+                      {{ 'products.product.duties_included' | t }}
+                    {%- endif -%}
+                    {%- if shop.shipping_policy.body != blank -%}
+                      {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                <div {{ block.shopify_attributes }}>
+                  {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                  {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    {{ form | payment_terms }}
+                  {%- endform -%}
+                </div>
 
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
