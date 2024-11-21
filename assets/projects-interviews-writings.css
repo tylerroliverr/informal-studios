@@ -4,8 +4,14 @@
   gap: 60px;
 }
 
+.collection-container {
+  padding-top: 20px;
+  display: flex;
+}
+
 .index-container {
   padding-top: 0;
+  min-width: 10%;
 }
 
 .sub-heading {
@@ -13,4 +19,42 @@
   font-size: 14px;
   font-style: italic;
   opacity: 0.75;
+}
+
+.text-block {
+  padding-bottom: 10px;
+}
+
+.media-block {
+  width: 70%;
+  margin: 0 auto;
+  outline: solid 1px black;
+}
+
+.media-block img {
+  width: 100%;
+  outline: dotted 2px red;
+}
+
+.content-container {
+  flex-direction: column;
+}
+
+.details-container {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 1rem;
+  color: rgb(115, 115, 115);
+}
+
+.details-title {
+  padding-right: 8px;
+}
+
+.article-image {
+  width: 30%;
+}
+
+.article-image img {
+  width: 100%;
 }

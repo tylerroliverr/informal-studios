@@ -1,15 +1,64 @@
 {{ 'collection-custom-sections.css' | asset_url | stylesheet_tag }}
 {{ 'projects-interviews-writings.css' | asset_url | stylesheet_tag }}
 
-<div class="index-container">
-  <p>Index</p>
-  {% for indexed_product in collections.projects.products %}
-    <div class="product-title-div">
-      <a href="{{ indexed_product.url }}" target="_self">
-        <p class="product-title {% if template == 'product.projects' and product.handle == indexed_product.handle %}current-product{% endif %}">
-          {{ indexed_product.title }}
-        </p>
-      </a>
+<div class="page-container">
+  <div class="index-container">
+    <p>Index</p>
+    {% for indexed_product in collections.projects.products %}
+      <div class="product-title-div">
+        <a href="{{ indexed_product.url }}" target="_self">
+          <p class="product-title {% if template == 'product.projects' and product.handle == indexed_product.handle %}current-product{% endif %}">
+            {{ indexed_product.title }}
+          </p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="content-container">
+    <p class="current-product">{{ product.title }}</p>
+    <div class="details-container">
+      {% if product.metafields.custom.date %}
+        <p><span class="current-product details-title">Date </span>{{ product.metafields.custom.date }}</p>
+      {% endif %}
+      {% if product.metafields.custom.details %}
+        <p><span class="current-product details-title">Details </span>{{ product.metafields.custom.details }}</p>
+      {% endif %}
+      {% if product.metafields.custom.persons_name %}
+        <p><span class="current-product details-title">Name </span>{{ product.metafields.custom.persons_name }}</p>
+      {% endif %}
+      {% if product.metafields.custom.collaboration %}
+        <p><span class="current-product details-title">Collaboration </span>{{ product.metafields.custom.collaboration }}</p>
+      {% endif %}
     </div>
-  {% endfor %}
+
+    {% assign block_count = 6 %}
+
+    {% for i in (1..block_count) %}
+      {% assign text_block_key = 'text_block_' | append: i %}
+      {% assign media_block_key = 'media_block_' | append: i %}
+      {% assign caption_block_key = 'caption_for_media_' | append: i %}
+
+      {% assign text_block = product.metafields.custom[text_block_key] %}
+      {% assign media_block = product.metafields.custom[media_block_key] %}
+      {% assign caption_block = product.metafields.custom[caption_block_key] %}
+
+      {% if text_block.value %}
+        <div class="text-block">
+          {{ text_block | metafield_tag }}
+        </div>
+      {% endif %}
+
+      {% if media_block.value %}
+        <div class="media-block">
+          {{ media_block | metafield_tag }}
+          {% if caption_block.value %}
+            <div class="caption-block">
+              {{ caption_block | metafield_tag }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
 </div>

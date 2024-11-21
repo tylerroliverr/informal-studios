@@ -44,6 +44,15 @@
         </div>
       {% endfor %}
     </div>
+    {% for product in collections.projects.products %}
+      {% if product.metafields.custom.media_block_1 %}
+        <div class="article-image">
+          <a href="{{ product.url }}" target="_self">
+            {{ product.metafields.custom.media_block_1 | metafield_tag }}
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
 {% endif %}
 
@@ -61,6 +70,15 @@
         </div>
       {% endfor %}
     </div>
+    {% for product in collections.writings.products %}
+      {% if product.metafields.custom.media_block_1 %}
+        <div class="article-image">
+          <a href="{{ product.url }}" target="_self">
+            {{ product.metafields.custom.media_block_1 | metafield_tag }}
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
 {% endif %}
 
@@ -78,5 +96,14 @@
         </div>
       {% endfor %}
     </div>
+    {% for product in collections.interviews.products %}
+      {% if product.metafields.custom.media_block_1 %}
+        <div class="article-image">
+          <a href="{{ product.url }}" target="_self">
+            {{ product.metafields.custom.media_block_1 | metafield_tag }}
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
 {% endif %}

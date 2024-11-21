@@ -1,6 +1,6 @@
 .shop-page-container {
   display: flex;
-
+  padding-top: 20px;
 }
 
 .index-container {
@@ -17,6 +17,21 @@
 .product-title-div {
   padding-left: 20px;
   padding-top: 5px;
+}
+
+.product-title-main {
+  font-size: 2rem;
+  font-family: var(--medium-font);
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.description-container {
+  padding-bottom: 25px;
+}
+
+.variants-container {
+  padding-bottom: 10px;
 }
 
 .product-image-container {
@@ -56,6 +71,14 @@
   padding: 5px 20px;
   min-width: unset;
   min-height: unset;
+}
+
+.details-container {
+  padding-top: 30px;
+}
+
+.information-container {
+  padding-top: 10px;
 }
 
 @media screen and (width >=768px) {

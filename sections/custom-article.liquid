@@ -1,0 +1,106 @@
+{% schema %}
+{
+  "name": "Article Content",
+  "tag": "article",
+  "class": "article-content",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text_content",
+          "label": "Text Content"
+        }
+      ]
+    },
+    {
+      "type": "media",
+      "name": "Media Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video_url",
+          "id": "video",
+          "label": "Video URL",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media Type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article Content"
+    }
+  ]
+}
+{% endschema %}
+
+{% if section.blocks.size > 0 %}
+  <div class="article-blocks container mx-auto py-8">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'text' %}
+          <div class="text-block my-8" {{ block.shopify_attributes }}>
+            {{ block.settings.text_content }}
+          </div>
+
+        {% when 'media' %}
+          <div class="media-block my-8" {{ block.shopify_attributes }}>
+            {% if block.settings.media_type == 'image' and block.settings.image %}
+              <img
+                src="{{ block.settings.image | img_url: 'master' }}"
+                alt="{{ block.settings.image.alt }}"
+                loading="lazy"
+                class="w-full h-auto"
+                height="auto"
+                width="auto"
+              >
+            {% elsif block.settings.media_type == 'video' and block.settings.video %}
+              <div class="video-container relative pt-[56.25%]">
+                {% if block.settings.video contains 'youtube' %}
+                  <iframe
+                    src="{{ block.settings.video | replace: 'watch?v=', 'embed/' }}"
+                    class="absolute top-0 left-0 w-full h-full"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                {% elsif block.settings.video contains 'vimeo' %}
+                  <iframe
+                    src="{{ block.settings.video | replace: 'vimeo.com/', 'player.vimeo.com/video/' }}"
+                    class="absolute top-0 left-0 w-full h-full"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+{% endif %}

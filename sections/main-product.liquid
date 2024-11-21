@@ -102,7 +102,7 @@
                 {% render block %}
               {%- when 'title' -%}
                 <div class="title-container" {{ block.shopify_attributes }}>
-                  <p class="current-product">
+                  <p class="current-product product-title-main">
                     {{ product.title | escape }}
                   </p>
                 </div>
@@ -535,6 +535,34 @@
                   section_id: section.id,
                   show_pickup_availability: true
                 -%}
+
+                <div class="details-container">
+                  <details class="information-container">
+                    {% if product.metafields.custom.sizing %}
+                      <summary class="information-title">
+                        <span class="info-text">Sizing +</span>
+                      </summary>
+                      <div class="information-text">
+                        {{ product.metafields.custom.sizing | metafield_tag }}
+                      </div>
+                    {% else %}
+                      <summary>missing data; add something to metafield on product page</summary>
+                    {% endif %}
+                  </details>
+
+                  <details class="information-container">
+                    {% if product.metafields.custom.more %}
+                      <summary class="information-title">
+                        <span class="info-text">More Info +</span>
+                      </summary>
+                      <div class="information-text">
+                        {{ product.metafields.custom.more | metafield_tag }}
+                      </div>
+                    {% else %}
+                      <summary>missing data; add something to metafield on product page</summary>
+                    {% endif %}
+                  </details>
+                </div>
 
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}

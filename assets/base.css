@@ -52,6 +52,10 @@
   letter-spacing: normal !important;
 }
 
+/* * {
+  cursor: url(https://cdn.shopify.com/s/files/1/0693/3122/2685/files/cursor_1.png?v=1732057679) 13 6, auto;
+} */
+
 .content-for-layout {
   padding: 0 10px;
 }
