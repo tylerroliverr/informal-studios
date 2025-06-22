@@ -1,7 +1,8 @@
 {{ 'collection-custom-sections.css' | asset_url | stylesheet_tag }}
 {{ 'projects-interviews-writings.css' | asset_url | stylesheet_tag }}
+{{ 'hide-index.css' | asset_url | stylesheet_tag }}
 
-<div class="page-container">
+<div class="page-container project-container">
   <div class="index-container">
     <p>Index</p>
     {% for indexed_product in collections.projects.products %}
@@ -28,7 +29,9 @@
         <p><span class="current-product details-title">Name </span>{{ product.metafields.custom.persons_name }}</p>
       {% endif %}
       {% if product.metafields.custom.collaboration %}
-        <p><span class="current-product details-title">Collaboration </span>{{ product.metafields.custom.collaboration }}</p>
+        <p>
+          <span class="current-product details-title">Collaboration </span>{{ product.metafields.custom.collaboration }}
+        </p>
       {% endif %}
     </div>
 

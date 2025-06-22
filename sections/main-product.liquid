@@ -536,33 +536,27 @@
                   show_pickup_availability: true
                 -%}
 
-                <div class="details-container">
+                {% if product.metafields.custom.sizing %}
                   <details class="information-container">
-                    {% if product.metafields.custom.sizing %}
-                      <summary class="information-title">
-                        <span class="info-text">Sizing +</span>
-                      </summary>
-                      <div class="information-text">
-                        {{ product.metafields.custom.sizing | metafield_tag }}
-                      </div>
-                    {% else %}
-                      <summary>missing data; add something to metafield on product page</summary>
-                    {% endif %}
+                    <summary class="information-title">
+                      <span class="info-text">Sizing +</span>
+                    </summary>
+                    <div class="information-text">
+                      {{ product.metafields.custom.sizing | metafield_tag }}
+                    </div>
                   </details>
+                {% endif %}
 
+                {% if product.metafields.custom.more %}
                   <details class="information-container">
-                    {% if product.metafields.custom.more %}
-                      <summary class="information-title">
-                        <span class="info-text">More Info +</span>
-                      </summary>
-                      <div class="information-text">
-                        {{ product.metafields.custom.more | metafield_tag }}
-                      </div>
-                    {% else %}
-                      <summary>missing data; add something to metafield on product page</summary>
-                    {% endif %}
+                    <summary class="information-title">
+                      <span class="info-text">More Info +</span>
+                    </summary>
+                    <div class="information-text">
+                      {{ product.metafields.custom.more | metafield_tag }}
+                    </div>
                   </details>
-                </div>
+                {% endif %}
 
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}

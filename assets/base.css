@@ -45,11 +45,20 @@
   src: url(https://cdn.shopify.com/s/files/1/0693/3122/2685/files/PPNeueMontreal-Regular.woff?v=1731373533);
 }
 
+@font-face {
+  font-family: "Acma";
+  src: url(https://cdn.shopify.com/s/files/1/0693/3122/2685/files/PPAcma-Book.woff?v=1750229790);
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   letter-spacing: normal !important;
+}
+
+#shop-hcaptcha-badge-container {
+  display: none !important;
 }
 
 /* * {

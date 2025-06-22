@@ -1,40 +1,187 @@
 {{ 'about.css' | asset_url | stylesheet_tag }}
 
-<div class="fade-bg"></div>
-
-<div class="about-page">
-  <div class="about-photo-container">
-    <img
-      src="https://cdn.shopify.com/s/files/1/0693/3122/2685/files/About_Photo.jpg?v=1731547179"
-      width="auto"
-      height="auto"
-      class="about-photo"
-    >
-  </div>
-
-  <div class="about-text-container">
-    <div class="about-text">
-      <p>
-        Zara Kamran Khan is an architect, writer, and researcher with a passion <span class="icon">y</span> for making
-        things. Trained in architecture and fuelled by curiosity <span class="icon">a</span>, she explores ideas across
-        disciplines, from writing and research to designing jewellery.
-      </p>
-      <br>
-      <p>
-        Zara’s work brings together a love for craft and storytelling, creating pieces <span class="icon">H</span> that
-        reflect both skill and imagination.
-      </p>
+<div class="fade-bg">
+  <div class="about-page">
+    <div class="about-photo-container">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0693/3122/2685/files/About_Photo.jpg?v=1731547179"
+        width="auto"
+        height="auto"
+        class="about-photo"
+      >
     </div>
-    <div class="social-links-container">
-      <div class="social-links-bubble">
-        <a><p>Instagram</p></a>
+
+    <div class="about-text-container">
+      <div class="about-text">
+        <p>
+          Zara Kamran Khan is an architect, writer, and researcher with a passion <span class="icon">y</span> for making
+          things. Trained in architecture and fuelled by curiosity <span class="icon">a</span>, she explores ideas
+          across disciplines, from writing and research to designing jewellery.
+        </p>
+        <br>
+        <p>
+          Zara’s work brings together a love for craft and storytelling, creating pieces
+          <span class="icon">H</span> that reflect both skill and imagination.
+        </p>
       </div>
-      <div class="social-links-bubble">
-        <a><p>Facebook</p></a>
+      <div class="social-links-container">
+        <div class="social-links-bubble">
+          <a href="https://www.instagram.com/informal_studi0/"><p>Instagram</p></a>
+        </div>
+        <div class="social-links-bubble">
+          <a href="" id="open-modal"><p>Contact</p></a>
+        </div>
+        <div id="contact-modal" class="modal">
+          <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            {% form 'contact', id: 'ContactForm' %}
+              {{ form.errors | default_errors }}
+
+              {%- if form.posted_successfully? -%}
+                <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+                  {% render 'icon-success' %}
+                  {{ 'templates.contact.form.post_success' | t }}
+                </h2>
+              {%- elsif form.errors -%}
+                <div class="form__message">
+                  <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+                    {% render 'icon-error' %}
+                    {{ 'templates.contact.form.error_heading' | t }}
+                  </h2>
+                </div>
+                <ul class="form-status-list caption-large" role="list">
+                  {%- for field in form.errors.translated_fields -%}
+                    <li>
+                      <a href="#ContactForm-{{ field }}" class="link">
+                        {{ form.errors.translated_fields[field] | capitalize }}
+                        {{ form.errors.messages[field] }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+              <div class="first-name">
+                <label for="ContactForm-name"
+                  >Name
+                  <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="ContactForm-name"
+                  name="contact[{{ 'templates.contact.form.name' | t }}]"
+                  class=""
+                  value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                  autocomplete="name"
+                  placeholder="{{ 'templates.contact.form.name' | t }}"
+                  required
+                >
+              </div>
+
+              <div class="phone">
+                <label for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+                <input
+                  type="tel"
+                  id="ContactForm-phone"
+                  name="contact[{{ 'templates.contact.form.phone' | t }}]"
+                  class=""
+                  autocomplete="tel"
+                  pattern="[0-9\-]*"
+                  value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+                  placeholder="{{ 'templates.contact.form.phone' | t }}"
+                >
+              </div>
+
+              <div class="email">
+                <label for="ContactForm-email">
+                  {{ 'templates.contact.form.email' | t }}
+                  <span aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="ContactForm-email"
+                  name="contact[email]"
+                  class=""
+                  autocomplete="email"
+                  spellcheck="false"
+                  autocapitalize="off"
+                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  aria-required="true"
+                  {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="ContactForm-email-error"
+                  {% endif %}
+                  placeholder="{{ 'templates.contact.form.email' | t }}"
+                  required
+                >
+                {%- if form.errors contains 'email' -%}
+                  <small class="contact__field-error" id="ContactForm-email-error">
+                    <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                    <span class="form__message">
+                      {% render 'icon-error' %}
+                      {{ form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email }}
+                    </span>
+                  </small>
+                {%- endif -%}
+              </div>
+
+              <div class="message">
+                <label for="ContactForm-body">
+                  {{- 'templates.contact.form.comment' | t }}
+                  <span aria-hidden="true">*</span>
+                </label>
+                <textarea
+                  id="ContactForm-body"
+                  name="contact[{{ 'templates.contact.form.comment' | t }}]"
+                  class="text-area"
+                  rows="10"
+                  placeholder="{{ 'templates.contact.form.comment' | t }}"
+                  required
+                >{{ form.body }}</textarea>
+              </div>
+
+              <div class="submit">
+                <button type="submit" class="">
+                  {{ 'templates.contact.form.send' | t }}
+                </button>
+              </div>
+            {% endform %}
+          </div>
+        </div>
+        <div class="social-links-bubble">
+          <a href="https://www.youtube.com/@informal_studi0"><p>YouTube</p></a>
+        </div>
+        <div class="social-links-bubble">
+          <a href="https://open.spotify.com/show/1uVB0s7ThHMBx38UvvohOD?si=800ae0c35872470d"><p>Spotify</p></a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const openBtn = document.getElementById('open-modal');
+    const modal = document.getElementById('contact-modal');
+    const closeBtn = document.querySelector('.close-modal');
+
+    openBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      modal.style.display = 'block';
+    });
+
+    closeBtn.addEventListener('click', function () {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 {% schema %}
 {
@@ -49,8 +196,77 @@
           "type": "richtext",
           "id": "body",
           "label": "About Body"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.contact-form.settings.title.default",
+          "label": "t:sections.contact-form.settings.title.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "scheme-1"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.padding.section_padding_heading"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_top",
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "t:sections.all.padding.padding_bottom",
+          "default": 36
         }
       ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.contact-form.presets.name"
     }
   ]
 }

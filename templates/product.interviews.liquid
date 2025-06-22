@@ -1,5 +1,6 @@
 {{ 'collection-custom-sections.css' | asset_url | stylesheet_tag }}
 {{ 'projects-interviews-writings.css' | asset_url | stylesheet_tag }}
+{{ 'hide-index.css' | asset_url | stylesheet_tag }}
 
 <div class="page-container">
   <div class="index-container">
@@ -19,13 +20,34 @@
     <p class="current-product">{{ product.title }}</p>
     <div class="details-container">
       {% if product.metafields.custom.date %}
-        <p><span class="current-product details-title">Date </span>{{ product.metafields.custom.date }}</p>
-      {% endif %}
-      {% if product.metafields.custom.details %}
-        <p><span class="current-product details-title">Details </span>{{ product.metafields.custom.details }}</p>
+        <div class="details">
+          <div class="details-one">
+            <span class="current-product details-title">Date </span>
+          </div>
+          <div class="details-two">
+            {{ product.metafields.custom.date }}
+          </div>
+        </div>
       {% endif %}
       {% if product.metafields.custom.persons_name %}
-        <p><span class="current-product details-title">Name </span>{{ product.metafields.custom.persons_name }}</p>
+        <div class="details">
+          <div class="details-one">
+            <span class="current-product details-title">Name </span>
+          </div>
+          <div class="details-two">
+            {{ product.metafields.custom.persons_name }}
+          </div>
+        </div>
+      {% endif %}
+      {% if product.metafields.custom.details %}
+        <div class="details">
+          <div class="details-one">
+            <span class="current-product details-title">Details </span>
+          </div>
+          <div class="details-two">
+            {{ product.metafields.custom.details }}
+          </div>
+        </div>
       {% endif %}
       {% if product.metafields.custom.collaboration %}
         <p>
@@ -40,10 +62,12 @@
       {% assign text_block_key = 'text_block_' | append: i %}
       {% assign media_block_key = 'media_block_' | append: i %}
       {% assign caption_block_key = 'caption_for_media_' | append: i %}
+      {% assign youtube_block_key = 'youtube_block_' | append: i %}
 
       {% assign text_block = product.metafields.custom[text_block_key] %}
       {% assign media_block = product.metafields.custom[media_block_key] %}
       {% assign caption_block = product.metafields.custom[caption_block_key] %}
+      {% assign youtube_block = product.metafields.custom[youtube_block_key] %}
 
       {% if text_block.value %}
         <div class="text-block">
@@ -54,6 +78,43 @@
       {% if media_block.value %}
         <div class="media-block">
           {{ media_block | metafield_tag }}
+          {% if caption_block.value %}
+            <div class="caption-block">
+              {{ caption_block | metafield_tag }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if youtube_block.value %}
+        <div class="media-block">
+          {% assign media_content = youtube_block.value %}
+          {% if media_content contains 'youtube.com' or media_content contains 'youtu.be' %}
+            {% assign youtube_id = '' %}
+
+            {% if media_content contains 'youtube.com/watch?v=' %}
+              {% assign youtube_id = media_content | split: 'watch?v=' | last | split: '&' | first %}
+            {% elsif media_content contains 'youtu.be/' %}
+              {% assign youtube_id = media_content | split: 'youtu.be/' | last %}
+            {% endif %}
+
+            {% if youtube_id != '' %}
+              <div class="video-wrapper">
+                <iframe
+                  width="100%"
+                  height="315"
+                  src="https://www.youtube.com/embed/{{ youtube_id }}"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  controls="0"
+                  autoplay="1"
+                >
+                </iframe>
+              </div>
+            {% endif %}
+          {% endif %}
+
           {% if caption_block.value %}
             <div class="caption-block">
               {{ caption_block | metafield_tag }}

@@ -6,27 +6,41 @@
 {% endif %}
 
 {% if collection.handle == 'shop' %}
-  <div class="collection-container shop-container">
-    {% for product in collections.shop.products %}
-      <a href="{{ product.url }}" target="_self">
-        <div class="products-container">
-          {% assign image = product.media | first %}
-          <div class="product-image-div">
-            <img class="product-image" src="{{ image.src | image_url }}" width="280" height="auto">
-          </div>
-          <div class="shop-product-title-div">
-            <p class="shop-product-title">
-              {{ product.title }}
+  <div class="shop-page-container">
+    <div class="index-container">
+      <p>Shop</p>
+      {% for indexed_product in collections.shop.products %}
+        <div class="product-title-div">
+          <a href="{{ indexed_product.url }}" target="_self">
+            <p class="product-title {% if template == 'product' and product.handle == indexed_product.handle %}current-product{% endif %}">
+              {{ indexed_product.title }}
             </p>
-          </div>
-          <div class="product-price-div">
-            <p class="product-price">
-              {{ product.price | money }}
-            </p>
-          </div>
+          </a>
         </div>
-      </a>
-    {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="collection-container shop-container">
+      {% for product in collections.shop.products %}
+        <a href="{{ product.url }}" target="_self">
+          <div class="products-container">
+            {% assign image = product.media | first %}
+            <div class="product-image-div">
+              <img class="product-image" src="{{ image.src | image_url }}" width="900" height="auto">
+            </div>
+            <div class="shop-product-title-div">
+              <p class="shop-product-title">
+                {{ product.title }}
+              </p>
+            </div>
+            <div class="product-price-div">
+              <p class="product-price">
+                {{ product.price | money }}
+              </p>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
   </div>
 {% endif %}
 
@@ -44,15 +58,25 @@
         </div>
       {% endfor %}
     </div>
-    {% for product in collections.projects.products %}
-      {% if product.metafields.custom.media_block_1 %}
-        <div class="article-image">
-          <a href="{{ product.url }}" target="_self">
-            {{ product.metafields.custom.media_block_1 | metafield_tag }}
-          </a>
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="article-container">
+      {% for product in collections.projects.products %}
+        {% assign first_media = null %}
+        {% for i in (1..6) %}
+          {% assign media_block_key = 'media_block_' | append: i %}
+          {% if product.metafields.custom[media_block_key] and first_media == null %}
+            {% assign first_media = product.metafields.custom[media_block_key] %}
+          {% endif %}
+        {% endfor %}
+
+        {% if first_media %}
+          <div class="article-image">
+            <a href="{{ product.url }}" target="_self">
+              {{ first_media | metafield_tag }}
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 {% endif %}
 
@@ -70,15 +94,25 @@
         </div>
       {% endfor %}
     </div>
-    {% for product in collections.writings.products %}
-      {% if product.metafields.custom.media_block_1 %}
-        <div class="article-image">
-          <a href="{{ product.url }}" target="_self">
-            {{ product.metafields.custom.media_block_1 | metafield_tag }}
-          </a>
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="article-container">
+      {% for product in collections.writings.products %}
+        {% assign first_media = null %}
+        {% for i in (1..6) %}
+          {% assign media_block_key = 'media_block_' | append: i %}
+          {% if product.metafields.custom[media_block_key] and first_media == null %}
+            {% assign first_media = product.metafields.custom[media_block_key] %}
+          {% endif %}
+        {% endfor %}
+
+        {% if first_media %}
+          <div class="article-image">
+            <a href="{{ product.url }}" target="_self">
+              {{ first_media | metafield_tag }}
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 {% endif %}
 
@@ -96,14 +130,24 @@
         </div>
       {% endfor %}
     </div>
-    {% for product in collections.interviews.products %}
-      {% if product.metafields.custom.media_block_1 %}
-        <div class="article-image">
-          <a href="{{ product.url }}" target="_self">
-            {{ product.metafields.custom.media_block_1 | metafield_tag }}
-          </a>
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="article-container">
+      {% for product in collections.interviews.products %}
+        {% assign first_media = null %}
+        {% for i in (1..6) %}
+          {% assign media_block_key = 'media_block_' | append: i %}
+          {% if product.metafields.custom[media_block_key] and first_media == null %}
+            {% assign first_media = product.metafields.custom[media_block_key] %}
+          {% endif %}
+        {% endfor %}
+
+        {% if first_media %}
+          <div class="article-image">
+            <a href="{{ product.url }}" target="_self">
+              {{ first_media | metafield_tag }}
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 {% endif %}
