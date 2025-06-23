@@ -27,7 +27,7 @@
 .page-container {
   display: flex;
   gap: 60px;
-  padding-top: 20px;
+  padding-top: 0px;
 }
 
 .article-container {
@@ -44,7 +44,7 @@
 }
 
 .article-content {
-  padding-top: 20px;
+  padding-top: 0px;
   width: fit-content;
 }
 

@@ -59,6 +59,10 @@
     flex-wrap: nowrap;
   }
 
+  .index-container {
+    display: none;
+  }
+
   .product-image {
     width: 100%;
   }
@@ -75,5 +79,9 @@
 
   .product-title-div {
     font-size: 0.8rem;
+  }
+
+  .product-image {
+    height: 450px;
   }
 }

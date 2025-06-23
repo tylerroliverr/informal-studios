@@ -13,7 +13,7 @@ body {
 
 .about-page {
   display: flex;
-  margin-top: 20px;
+  margin-top: 0px;
   position: relative;
   z-index: 2;
 }
@@ -194,6 +194,7 @@ body {
     height: 35px;
     border-radius: 20px;
     font-size: 18px;
+    background-color: transparent;
   }
 
   .submit {

@@ -24,6 +24,11 @@ a {
   z-index: 2;
 }
 
+.logoContainer img {
+  height: 45px;
+  width: fit-content;
+}
+
 div:empty {
   display: block !important;
 }
@@ -231,8 +236,8 @@ div:empty {
   }
 
   .headerNav .logoContainer a img {
-    width: 60px;
-    height: 100%;
+    width: fit-content;
+    height: 45px;
   }
 
   .headerNavItem {
