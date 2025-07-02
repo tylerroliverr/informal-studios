@@ -1,20 +1,73 @@
 {{ 'homepage.css' | asset_url | stylesheet_tag }}
 
 <div class="homepage-container">
-  <div class="homepage-title">
-    <h1>INFORMAL STUDIOS</h1>
-  </div>
-  <video
-    class="homepage-video"
-    autoplay
-    muted
-    loop
-    playsinline
-  >
-    <source
-      class="video"
-      src="https://cdn.shopify.com/videos/c/o/v/c7c6bcaea24c4acd9c48f3181bbe5040.mp4"
-      type="video/mp4"
+  {% if section.settings.homepage_video != blank %}
+    {% assign video_url = section.settings.homepage_video.sources[0].url %}
+
+    <video
+      id="homepage-video"
+      class="homepage-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="{{ section.settings.homepage_image | image_url }}"
+    ></video>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var video = document.getElementById('homepage-video');
+        var videoSrc = '{{ video_url }}';
+
+        if (Hls.isSupported()) {
+          var hls = new Hls();
+          hls.loadSource(videoSrc);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            video.play();
+          });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          // Safari (or browsers with native HLS support)
+          video.src = videoSrc;
+          video.play();
+        } else {
+          console.warn('HLS not supported in this browser.');
+        }
+      });
+    </script>
+  {% elsif section.settings.homepage_image != blank %}
+    <img
+      class="homepage-photo"
+      src="{{ section.settings.homepage_image | image_url }}"
+      alt="Homepage photo"
+      width="auto"
+      height="auto"
     >
-  </video>
+  {% endif %}
 </div>
+
+{% schema %}
+{
+  "name": "Homepage Media",
+  "settings": [
+    {
+      "type": "video",
+      "id": "homepage_video",
+      "label": "Homepage video",
+      "info": "Upload a .mp4 file or use one from your Shopify files."
+    },
+    {
+      "type": "image_picker",
+      "id": "homepage_image",
+      "label": "Homepage image",
+      "info": "Will be used if no video is provided."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Media"
+    }
+  ]
+}
+{% endschema %}

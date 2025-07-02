@@ -62,9 +62,17 @@
 .article-image {
   width: 380px;
   height: 200px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
 }
 
-.article-image:hover {
+.article-image p {
+  font-size: 0.7rem;
+  color: grey;
+}
+
+.article-image a:hover {
   outline: blue 1px solid;
 }
 
@@ -106,6 +114,10 @@
   display: flex;
 }
 
+.mobile-list {
+  display: none;
+}
+
 @media screen and (width <=768px) {
 
   .index-container {
@@ -119,6 +131,7 @@
 
   .text-block {
     padding: 0;
+    padding-bottom: 12px;
   }
 
   .caption-block {
@@ -145,5 +158,32 @@
 
   .content-container {
     padding-right: 0px;
+  }
+}
+
+/* mobile list view */
+@media screen and (width <=768px) {
+  .article-image {
+    display: none;
+  }
+
+  .article-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-list {
+    display: unset;
+  }
+
+  .mobile-list p {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (width >=1600px) {
+  .text-block {
+    font-size: 1.9rem;
+    padding-bottom: 30px;
   }
 }

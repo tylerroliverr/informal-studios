@@ -1,0 +1,17 @@
+.footer-container {
+  position: fixed;
+  bottom: 8px;
+  left: 10px;
+  padding: 10px 0 0px 0px;
+  font-size: .8rem;
+  color: white;
+  mix-blend-mode: difference;
+  z-index: 800;
+}
+
+@media screen and (width <=768px) {
+  .footer-container {
+    right: 10px;
+    left: unset;
+  }
+}

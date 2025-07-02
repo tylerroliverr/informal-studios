@@ -1,7 +1,10 @@
 {
   "sections": {
     "homepage": {
-      "type": "homepage"
+      "type": "homepage",
+      "settings": {
+        "homepage_video": "shopify://files/videos/Zara animation Final.mp4"
+      }
     }
   },
   "order": [
