@@ -1,5 +1,23 @@
 {{ 'custom-footer.css' | asset_url | stylesheet_tag }}
 
 <div class="footer-container">
-  <p>Informal Studios 2025</p>
+  <p>{{ section.settings.footer_text }}</p>
 </div>
+
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Footer"
+    }
+  ]
+}
+{% endschema %}

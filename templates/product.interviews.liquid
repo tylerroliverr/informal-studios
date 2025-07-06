@@ -63,11 +63,13 @@
       {% assign media_block_key = 'media_block_' | append: i %}
       {% assign caption_block_key = 'caption_for_media_' | append: i %}
       {% assign youtube_block_key = 'youtube_block_' | append: i %}
+      {% assign caption_youtube_block_key = 'caption_for_youtube_' | append: i %}
 
       {% assign text_block = product.metafields.custom[text_block_key] %}
       {% assign media_block = product.metafields.custom[media_block_key] %}
       {% assign caption_block = product.metafields.custom[caption_block_key] %}
       {% assign youtube_block = product.metafields.custom[youtube_block_key] %}
+      {% assign caption_youtube_block = product.metafields.custom[caption_youtube_block_key] %}
 
       {% if text_block.value %}
         <div class="text-block">
@@ -115,9 +117,9 @@
             {% endif %}
           {% endif %}
 
-          {% if caption_block.value %}
+          {% if caption_youtube_block.value != blank %}
             <div class="caption-block">
-              {{ caption_block | metafield_tag }}
+              {{ caption_youtube_block | metafield_tag }}
             </div>
           {% endif %}
         </div>
